@@ -8,7 +8,7 @@ export default function Torusknot(props) {
   return (
     <mesh scale={Math.min(viewport.width, viewport.height) / 5} {...props} ref={ref}>
       <torusKnotGeometry args={[1, 0.2, 123, 29]} />
-      <meshStandardMaterial color="red" />
+      <meshStandardMaterial color="white" />
     </mesh>
   )
 }

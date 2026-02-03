@@ -1,7 +1,9 @@
 import { Center, Text } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { generate } from "random-words";
 
 export default function Footer() {
+    const randomWord = generate();
     return (
         <Canvas style={{ background: '#222', height: '8vh' }} camera={{ position: [0, 0, 2] }}>
             <ambientLight intensity={0.2} />
@@ -16,7 +18,7 @@ export default function Footer() {
                     onPointerOver={() => (document.body.style.cursor = "pointer")}
                     onPointerOut={() => (document.body.style.cursor = "default")}
                 >
-                    © 2026 by SenDTT
+                    © 2026 by SenDTT - {randomWord}
                 </Text>
             </Center>
         </Canvas>

@@ -3,8 +3,10 @@ import { AsciiRenderer, OrbitControls } from '@react-three/drei'
 import Header from './ui/header.jsx'
 import Footer from './ui/footer.jsx'
 import Torusknot from './components/Torusknot.jsx'
+import { generate } from 'random-words'
 
 export default function App() {
+  const randChar = generate({maxLength: 1});
   return (
     <>
       <Header />
@@ -19,7 +21,7 @@ export default function App() {
 
         <Torusknot />
 
-        <AsciiRenderer bgColor='transparent' />
+        <AsciiRenderer bgColor='transparent' characters={randChar} color='#fff'/>
 
         <OrbitControls />
       </Canvas>
