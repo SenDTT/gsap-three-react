@@ -5,12 +5,15 @@ export default function Box() {
   const mesh = useRef()
 
   useEffect(() => {
-    gsap.to(mesh.current.rotation, {
+    const tween = gsap.to(mesh.current.rotation, {
       y: Math.PI * 2,
-      duration: 2,
+      z: Math.PI * 2,
+      duration: 10,
       repeat: -1,
-      ease: 'none'
+      ease: 'linear',
     })
+
+    return () => tween.kill()
   }, [])
 
   return (
