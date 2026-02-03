@@ -1,0 +1,24 @@
+import { Center, Text } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+
+export default function Footer() {
+    return (
+        <Canvas style={{ background: '#222', height: '8vh' }} camera={{ position: [0, 0, 2] }}>
+            <ambientLight intensity={0.2} />
+            <directionalLight position={[-5, 4, 10]} />
+            <directionalLight position={[5, 4, 10]} />
+
+            <Center top>
+                <Text 
+                    color='#e2dfdf' fontSize={0.6} 
+                    font={'/fonts/PlaywriteNZBasic-VariableFont_wght.ttf'} 
+                    onClick={() => window.open("https://github.com/SenDTT", "_blank")}
+                    onPointerOver={() => (document.body.style.cursor = "pointer")}
+                    onPointerOut={() => (document.body.style.cursor = "default")}
+                >
+                    © 2026 by SenDTT
+                </Text>
+            </Center>
+        </Canvas>
+    )
+}
