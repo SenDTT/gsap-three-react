@@ -1,8 +1,8 @@
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
+import { AsciiRenderer, OrbitControls } from '@react-three/drei'
 import Header from './ui/header.jsx'
-import Box from './components/Box.jsx'
 import Footer from './ui/footer.jsx'
+import Torusknot from './components/Torusknot.jsx'
 
 export default function App() {
   return (
@@ -13,10 +13,13 @@ export default function App() {
         style={{ background: '#111', height: '80vh' }}
         camera={{ position: [3, 4, 5] }}
       >
+        <color attach="background" args={['#000']} />
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} />
 
-        <Box />
+        <Torusknot />
+
+        <AsciiRenderer bgColor='transparent' />
 
         <OrbitControls />
       </Canvas>
