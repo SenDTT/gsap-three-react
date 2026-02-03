@@ -14,3 +14,8 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Notes
+
+* use .ttf font for Text component, .json font for Text3D component (should be converted from .ttf by [Facetype.js](https://gero3.github.io/facetype.js/))
+* write JS function to add link to Text. (onClick)
