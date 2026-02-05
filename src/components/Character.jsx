@@ -1,11 +1,28 @@
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
+import gsap from "gsap";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 export default function Character() {
     const { scene, animations } = useGLTF('/models/humanoid_robot.glb');
     const mixer = useRef(null);
+    const ref = useRef();
+
+    useEffect(() => {
+        if (!scene) {
+            console.warn("GLTF model not loaded.");
+        }
+
+        if (ref.current) {
+            gsap.fromTo(ref.current.position, { x: -3 }, {
+                x: Math.PI * 1,
+                duration: 7,
+                repeat: -1,
+                ease: "linear",
+            });
+        }
+    }, []);
 
     useEffect(() => {
         if (!animations || !animations.length) {
@@ -34,6 +51,6 @@ export default function Character() {
     });
 
     return (
-        <primitive object={scene} position={[0, -0.48, 1]} scale={0.7} rotation={[0, Math.PI * 2.5, 0]} />
+        <primitive ref={ref} object={scene} position={[0, -0.48, 2.5]} scale={0.7} rotation={[0, Math.PI * 2.5, 0]} />
     );
 }
