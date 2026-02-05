@@ -24,7 +24,7 @@ export default function Header() {
             <Center>
                 <Text3D bevelThickness={0.01} bevelEnabled bevelSegments={1} height={0.05} ref={headerRef} font={'/fonts/Playwrite NZ Basic_Regular.json'}>
                     GSAP + Three.js + React
-                    <meshStandardMaterial color="rgb(255, 0, 81, 0.5)" />
+                    <meshStandardMaterial color="rgb(255, 0, 81)" transparent opacity={0.8} />
                 </Text3D>
             </Center>
         </Canvas>
