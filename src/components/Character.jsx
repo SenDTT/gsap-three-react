@@ -1,7 +1,7 @@
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import gsap from "gsap";
-import { useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import * as THREE from "three";
 
 export default function Character() {
@@ -32,6 +32,10 @@ export default function Character() {
 
         mixer.current = new THREE.AnimationMixer(scene);
         const action = mixer.current.clipAction(animations[0]);
+        action.setLoop(THREE.LoopRepeat, Infinity); 
+        action.clampWhenFinished = false;
+        action.zeroSlopeAtEnd = false;
+        action.zeroSlopeAtStart = false;
         action.play();
 
         console.log("Animation started:", animations[0].name);
@@ -51,6 +55,8 @@ export default function Character() {
     });
 
     return (
-        <primitive ref={ref} object={scene} position={[0, -0.48, 2.5]} scale={0.7} rotation={[0, Math.PI * 2.5, 0]} />
+        <Suspense fallback={null}>
+            <primitive ref={ref} object={scene} position={[0, -0.45, 1]} scale={0.7} rotation={[0, Math.PI * 2.5, 0]} />
+        </Suspense>
     );
 }
