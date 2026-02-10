@@ -30,15 +30,26 @@ export default function Character() {
             return;
         }
 
+        if (mixer.current) return;
+
         mixer.current = new THREE.AnimationMixer(scene);
-        const action = mixer.current.clipAction(animations[0]);
-        action.setLoop(THREE.LoopRepeat, Infinity); 
+        const clip = animations[0];
+        clip.resetDuration(); // recalculates duration tightly
+        // clip.trim(0, clip.duration - 0.15); // remove last ~150ms to prevent looping glitch
+
+        const action = mixer.current.clipAction(clip);
+        action.setLoop(THREE.LoopRepeat, Infinity);
+
+        action.time = 0.0001;
+
         action.clampWhenFinished = false;
         action.zeroSlopeAtEnd = false;
         action.zeroSlopeAtStart = false;
         action.play();
 
-        console.log("Animation started:", animations[0].name);
+        console.log("Animation started:", clip.name);
+
+        // mixer.current.update(0.001);
 
         return () => {
             if (mixer.current) {
@@ -49,9 +60,7 @@ export default function Character() {
     }, [animations, scene]);
     
     useFrame((state, delta) => {
-        if (mixer.current) {
-            mixer.current.update(delta);
-        }
+        mixer.current?.update(delta);
     });
 
     return (
