@@ -1,6 +1,6 @@
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import gsap from "gsap";
+// import gsap from "gsap";
 import { Suspense, useEffect, useRef } from "react";
 import * as THREE from "three";
 
@@ -9,20 +9,20 @@ export default function Character() {
     const mixer = useRef(null);
     const ref = useRef();
 
-    useEffect(() => {
-        if (!scene) {
-            console.warn("GLTF model not loaded.");
-        }
+    // useEffect(() => {
+    //     if (!scene) {
+    //         console.warn("GLTF model not loaded.");
+    //     }
 
-        if (ref.current) {
-            gsap.fromTo(ref.current.position, { x: -3 }, {
-                x: Math.PI * 1,
-                duration: 7,
-                repeat: -1,
-                ease: "linear",
-            });
-        }
-    }, []);
+    //     if (ref.current) {
+    //         gsap.fromTo(ref.current.position, { x: -3 }, {
+    //             x: Math.PI * 1,
+    //             duration: 7,
+    //             repeat: -1,
+    //             ease: "linear",
+    //         });
+    //     }
+    // }, []);
 
     useEffect(() => {
         if (!animations || !animations.length) {
