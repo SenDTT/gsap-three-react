@@ -1,4 +1,4 @@
-import { MeshWobbleMaterial, OrbitControls, SoftShadows } from "@react-three/drei";
+import { MeshWobbleMaterial, OrbitControls, PositionalAudio, SoftShadows } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Character from "../../components/Character";
 
@@ -23,12 +23,16 @@ export default function StudioView() {
 
             <group castShadow>
                 <Character />
+
+                {/* audio, the sound will be played louder when the camera is near. */}
+                {/* <PositionalAudio url="/audios/example_audio.mp3" distance={1} loop autoplay /> */}
             </group>
 
             <mesh position={[2, 0.5, 4]} rotation={[0, 0, 2]}>
                 <boxGeometry />
                 <MeshWobbleMaterial factor={3} speed={1} />
             </mesh>
+
             <OrbitControls />
         </Canvas>
     )
