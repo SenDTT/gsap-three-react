@@ -8,24 +8,27 @@ export default function StudioView() {
             <SoftShadows opacity={0.5} size={30} samples={20} />
 
             <color attach="background" args={['#252424']} />
-            <ambientLight intensity={0.5} />
-            {/* <directionalLight position={[0, 0, -30]} intensity={1}/> */}
+            <ambientLight intensity={0.3} />
+            <directionalLight position={[0, 0, -30]} intensity={1}/>
 
             {/* <light position={[0, 10, 0]} intensity={1} castShadow /> */}
 
-            <mesh position={[0, 1.25, 0]} rotation={[0, Math.PI, 0]}>
-                <boxGeometry args={[8, 3.5, 0]} />
-                {/* <meshStandardMaterial color="#487c52" /> */}
+            <group position={[0, 1.25, 0]} rotation={[0, Math.PI, 0]}>
+                <mesh>
+                    <boxGeometry args={[8, 3.5, 0]} />
+                    <meshStandardMaterial color="#92fca8" />
+                    {/* <meshStandardMaterial color="#487c52" /> */}
 
-                {/* <planeGeometry args={[5, 3]} /> */}
-                <meshBasicMaterial>
-                    <GradientTexture
-                        stops={[0, 1]} // As many stops as you want
-                        colors={['aquamarine', 'hotpink']} // Colors need to match the number of stops
-                        size={1024} // Size is optional, default = 1024
-                    />
-                </meshBasicMaterial>
-            </mesh>
+                    {/* <planeGeometry args={[5, 3]} /> */}
+                    {/* <meshBasicMaterial>
+                        <GradientTexture
+                            stops={[0, 1]} // As many stops as you want
+                            colors={['aquamarine', 'hotpink']} // Colors need to match the number of stops
+                            size={1024} // Size is optional, default = 1024
+                        />
+                    </meshBasicMaterial> */}
+                </mesh>
+            </group>
 
             <mesh receiveShadow position={[0, -0.5, 2]}>
                 <boxGeometry args={[10, 0.1, 10]} />
@@ -33,7 +36,7 @@ export default function StudioView() {
             </mesh>
             
             <group castShadow>
-                <spotLight position={[0, 4, 7]} angle={0.2} intensity={100} />
+                <spotLight position={[0, 7, 10]} angle={0.2} intensity={100} />
                 <Character />
 
                 {/* audio, the sound will be played louder when the camera is near. */}
