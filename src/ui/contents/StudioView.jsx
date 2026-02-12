@@ -1,4 +1,4 @@
-import { GradientTexture, MeshWobbleMaterial, OrbitControls, PositionalAudio, SoftShadows } from "@react-three/drei";
+import { Edges, GradientTexture, MeshWobbleMaterial, OrbitControls, PositionalAudio, SoftShadows } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Character from "../../components/Character";
 
@@ -13,7 +13,7 @@ export default function StudioView() {
 
             {/* <light position={[0, 10, 0]} intensity={1} castShadow /> */}
 
-            <group position={[0, 1.25, 0]} rotation={[0, Math.PI, 0]}>
+            <group position={[0, 1.35, 0]} rotation={[0, Math.PI, 0]}>
                 <mesh>
                     <boxGeometry args={[8, 3.5, 0]} />
                     <meshStandardMaterial color="#92fca8" />
@@ -27,6 +27,14 @@ export default function StudioView() {
                             size={1024} // Size is optional, default = 1024
                         />
                     </meshBasicMaterial> */}
+
+                    {/* <Edges
+                        renderOrder={100}
+                        linewidth={4}
+                        scale={1}
+                        threshold={15} // Display edges only when the angle between two faces exceeds this value (default=15 degrees)
+                        color="white"
+                    /> */}
                 </mesh>
             </group>
 

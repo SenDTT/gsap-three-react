@@ -7,6 +7,7 @@ import * as THREE from "three";
 export default function Character() {
     const { scene, animations } = useGLTF('/models/humanoid_robot.glb');
     const mixer = useRef(null);
+    const actionRef = useRef(null);
     const ref = useRef();
 
     // useEffect(() => {
@@ -24,6 +25,8 @@ export default function Character() {
     //     }
     // }, []);
 
+    const LOOP_START = 0.9;
+
     useEffect(() => {
         if (!animations || !animations.length) {
             console.warn("No animations found in the GLTF model.");
@@ -33,34 +36,42 @@ export default function Character() {
         if (mixer.current) return;
 
         mixer.current = new THREE.AnimationMixer(scene);
-        const clip = animations[0];
-        clip.resetDuration(); // recalculates duration tightly
-        // clip.trim(0, clip.duration - 0.15); // remove last ~150ms to prevent looping glitch
+        const clip = animations[0].clone(); // clone the clip to avoid modifying the original
+        
+        clip.tracks.forEach(track => {
+            track.times = track.times.map(t => t - LOOP_START);
+        }); // remove last ~150ms to prevent looping glitch
 
+        clip.resetDuration(); // recalculates duration tightly based on keyframes, should be around 3.5s now
         const action = mixer.current.clipAction(clip);
         action.setLoop(THREE.LoopRepeat, Infinity);
 
-        action.time = 0.0001;
+        // action.time = LOOP_START; // start a bit into the animation to avoid the initial pose
 
         action.clampWhenFinished = false;
         action.zeroSlopeAtEnd = false;
         action.zeroSlopeAtStart = false;
         action.play();
 
+        actionRef.current = action;
+
         console.log("Animation started:", clip.name);
-
-        // mixer.current.update(0.001);
-
-        return () => {
-            if (mixer.current) {
-                mixer.current.stopAllAction();
-                mixer.current = null;
-            }
-        };
     }, [animations, scene]);
     
     useFrame((state, delta) => {
-        mixer.current?.update(delta);
+        if (!mixer.current || !actionRef.current) return;
+
+        const action = actionRef.current;
+        const clip = action.getClip();
+
+        // find the good loop boundary
+        const LOOP_END = clip.duration - 0.096; // adjust this number
+
+        if (action.time >= LOOP_END) {
+            action.time = 0.0001;
+        }
+
+        mixer.current.update(delta);
     });
 
     return (
