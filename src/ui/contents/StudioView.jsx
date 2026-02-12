@@ -3,6 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import Character from "../../components/Character";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import Background from "../../components/Background";
 
 export default function StudioView() {
     // const [activeCamera, setActiveCamera] = useState(1);
@@ -47,7 +48,7 @@ export default function StudioView() {
 
             <group position={[0, 1.35, 0]} rotation={[0, Math.PI, 0]}>
                 <mesh>
-                    <boxGeometry args={[8, 3.5, 0]} />
+                    <boxGeometry args={[20, 3.5, 0]} />
                     <meshStandardMaterial color="#92fca8" />
                     {/* <meshStandardMaterial color="#487c52" /> */}
 
@@ -68,10 +69,12 @@ export default function StudioView() {
                         color="white"
                     /> */}
                 </mesh>
+
+                <Background />
             </group>
 
             <mesh receiveShadow position={[0, -0.5, 2]}>
-                <boxGeometry args={[10, 0.1, 10]} />
+                <boxGeometry args={[20, 0.1, 10]} />
                 <meshStandardMaterial color="#b5b5b5" />
             </mesh>
             

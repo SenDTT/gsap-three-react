@@ -1,6 +1,5 @@
 import { ContactShadows, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-// import gsap from "gsap";
 import { Suspense, useEffect, useRef } from "react";
 import * as THREE from "three";
 
@@ -9,21 +8,6 @@ export default function Character() {
     const mixer = useRef(null);
     const actionRef = useRef(null);
     const ref = useRef();
-
-    // useEffect(() => {
-    //     if (!scene) {
-    //         console.warn("GLTF model not loaded.");
-    //     }
-
-    //     if (ref.current) {
-    //         gsap.fromTo(ref.current.position, { x: -3 }, {
-    //             x: Math.PI * 1,
-    //             duration: 7,
-    //             repeat: -1,
-    //             ease: "linear",
-    //         });
-    //     }
-    // }, []);
 
     const LOOP_START = 0.9;
 
