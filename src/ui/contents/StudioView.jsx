@@ -4,6 +4,8 @@ import Character from "../../components/Character";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import Background from "../../components/Background";
+// import CharacterCopy from "../../components/CharacterCopy";
+// import MovingBall from "../../components/MovingBall";
 
 export default function StudioView() {
     const cameraRef = useRef();
@@ -81,6 +83,8 @@ export default function StudioView() {
                 <spotLight position={[0, 7, 10]} angle={0.2} intensity={100} />
                 <Character position={[0, -0.45, 2]} />
 
+                {/* <CharacterCopy position={[0, -0.45, 2]} /> */}
+
                 {/* <Shadow opacity={0.9} color="#323232" colorStop={0} position={[0, -0.4, 1]}  rotation={[-Math.PI / 2, 0, 2]} /> */}
 
                 {/* audio, the sound will be played louder when the camera is near. */}
@@ -95,6 +99,8 @@ export default function StudioView() {
                 <boxGeometry />
                 <MeshWobbleMaterial factor={3} speed={1} />
             </mesh> */}
+
+            {/* <MovingBall /> */}
 
             <OrbitControls />
         </Canvas>

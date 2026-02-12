@@ -1,0 +1,76 @@
+import { ContactShadows, useAnimations, useGLTF } from "@react-three/drei";
+// import { useFrame } from "@react-three/fiber";
+import { Suspense, useEffect } from "react";
+import * as THREE from "three";
+
+export default function CharacterCopy({position}) {
+    const { scene, animations } = useGLTF('/models/humanoid_robot.glb');
+    const { ref, names, actions, clips } = useAnimations(animations)
+    useEffect(() => {
+        console.log("Available animation names:", names);
+        actions?.walk.play();
+        console.log("Playing 'walk' animation:", actions?.walk);
+
+        console.log("All clips:", clips);
+    });
+    // const LOOP_START = 0.9;
+
+    // useEffect(() => {
+    //     if (!animations || !animations.length) {
+    //         console.warn("No animations found in the GLTF model.");
+    //         return;
+    //     }
+
+    //     if (mixer.current) return;
+
+    //     mixer.current = new THREE.AnimationMixer(scene);
+    //     const clip = animations[0].clone(); // clone the clip to avoid modifying the original
+        
+    //     clip.tracks.forEach(track => {
+    //         track.times = track.times.map(t => t - LOOP_START);
+    //     }); // remove last ~150ms to prevent looping glitch
+
+    //     clip.resetDuration(); // recalculates duration tightly based on keyframes, should be around 3.5s now
+    //     const action = mixer.current.clipAction(clip);
+    //     action.setLoop(THREE.LoopRepeat, Infinity);
+
+    //     // action.time = LOOP_START; // start a bit into the animation to avoid the initial pose
+
+    //     action.clampWhenFinished = false;
+    //     action.zeroSlopeAtEnd = false;
+    //     action.zeroSlopeAtStart = false;
+    //     action.play();
+
+    //     actionRef.current = action;
+
+    //     console.log("Animation started:", clip.name);
+    // }, [animations, scene]);
+    
+    // useFrame((state, delta) => {
+    //     if (!mixer.current || !actionRef.current) return;
+
+    //     const action = actionRef.current;
+    //     const clip = action.getClip();
+
+    //     // find the good loop boundary
+    //     const LOOP_END = clip.duration - 0.096; // adjust this number
+
+    //     if (action.time >= LOOP_END) {
+    //         action.time = 0.0001;
+    //     }
+
+    //     mixer.current.update(delta);
+    // });
+
+    return (
+        <Suspense fallback={null}>
+            <primitive ref={ref} object={scene} position={position} scale={0.7} rotation={[0, Math.PI * 2.5, 0]} />
+
+                <ContactShadows 
+                    position={[0, -0.4, 0.05]}
+                    resolution={256}
+                    scale={10}
+                />
+        </Suspense>
+    );
+}
