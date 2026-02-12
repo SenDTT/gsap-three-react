@@ -1,4 +1,4 @@
-import { useGLTF } from "@react-three/drei";
+import { ContactShadows, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 // import gsap from "gsap";
 import { Suspense, useEffect, useRef } from "react";
@@ -77,6 +77,12 @@ export default function Character() {
     return (
         <Suspense fallback={null}>
             <primitive ref={ref} object={scene} position={[0, -0.45, 1]} scale={0.7} rotation={[0, Math.PI * 2.5, 0]} />
+
+                <ContactShadows 
+                    position={[0, -0.4, 0.05]}
+                    resolution={256}
+                    scale={10}
+                />
         </Suspense>
     );
 }

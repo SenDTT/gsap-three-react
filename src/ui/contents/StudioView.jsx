@@ -1,11 +1,11 @@
-import { Edges, GradientTexture, MeshWobbleMaterial, OrbitControls, PositionalAudio, SoftShadows } from "@react-three/drei";
+import { ContactShadows, Edges, GradientTexture, Grid, MeshWobbleMaterial, OrbitControls, PositionalAudio, Shadow, SoftShadows } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Character from "../../components/Character";
 
 export default function StudioView() {
     return (
         <Canvas style={{height: "80vh"}} camera={{ position: [-0.5, 0.5, 5], fov: 80 }} shadows>
-            <SoftShadows opacity={0.5} size={30} samples={20} />
+            {/* <SoftShadows opacity={0.5} size={30} samples={20} /> */}
 
             <color attach="background" args={['#252424']} />
             <ambientLight intensity={0.3} />
@@ -46,6 +46,8 @@ export default function StudioView() {
             <group castShadow>
                 <spotLight position={[0, 7, 10]} angle={0.2} intensity={100} />
                 <Character />
+
+                {/* <Shadow opacity={0.9} color="#323232" colorStop={0} position={[0, -0.4, 1]}  rotation={[-Math.PI / 2, 0, 2]} /> */}
 
                 {/* audio, the sound will be played louder when the camera is near. */}
                 {/* <PositionalAudio url="/audios/example_audio.mp3" distance={1} loop autoplay /> */}
