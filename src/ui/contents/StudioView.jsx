@@ -1,10 +1,42 @@
-import { ContactShadows, Edges, GradientTexture, Grid, MeshWobbleMaterial, OrbitControls, PositionalAudio, Shadow, SoftShadows } from "@react-three/drei";
+import { ContactShadows, Edges, GradientTexture, Grid, MeshWobbleMaterial, OrbitControls, PerspectiveCamera, PositionalAudio, Shadow, SoftShadows } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Character from "../../components/Character";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 export default function StudioView() {
+    // const [activeCamera, setActiveCamera] = useState(1);
+    const cameraRef = useRef();
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === "1") {
+                gsap.to(cameraRef.current.position, {
+                    x: 2.5,
+                    y: 2,
+                    z: 5,
+                    duration: 4,
+                    ease: "power2.inOut"
+                });
+            }
+
+            if (e.key === "2") {
+                gsap.to(cameraRef.current.position, {
+                    x: -1.5,
+                    y: 0.3,
+                    z: 4,
+                    duration: 4,
+                    ease: "power2.inOut"
+                });
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, []);
+
     return (
-        <Canvas style={{height: "80vh"}} camera={{ position: [-0.5, 0.5, 5], fov: 80 }} shadows>
+        <Canvas style={{height: "78vh"}} shadows>
             {/* <SoftShadows opacity={0.5} size={30} samples={20} /> */}
 
             <color attach="background" args={['#252424']} />
@@ -52,6 +84,10 @@ export default function StudioView() {
                 {/* audio, the sound will be played louder when the camera is near. */}
                 {/* <PositionalAudio url="/audios/example_audio.mp3" distance={1} loop autoplay /> */}
             </group>
+
+            <PerspectiveCamera ref={cameraRef} makeDefault position={[-1.5, 1.5, 5]} fov={80} />
+
+            {/* <PerspectiveCamera ref={cameraRef} position={[1.5, 1.5, 5]} fov={80} /> */}
 
             {/* <mesh position={[2, 0.5, 4]} rotation={[0, 0, 2]}>
                 <boxGeometry />
