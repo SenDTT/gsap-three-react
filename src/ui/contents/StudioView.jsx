@@ -80,7 +80,7 @@ export default function StudioView() {
             
             <group castShadow>
                 <spotLight position={[0, 7, 10]} angle={0.2} intensity={100} />
-                <Character />
+                <Character position={[0, -0.45, 2]} />
 
                 {/* <Shadow opacity={0.9} color="#323232" colorStop={0} position={[0, -0.4, 1]}  rotation={[-Math.PI / 2, 0, 2]} /> */}
 
