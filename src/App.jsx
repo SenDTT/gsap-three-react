@@ -1,10 +1,20 @@
 import Header from './ui/header.jsx'
 import Footer from './ui/footer.jsx'
-import TorusknotView from './ui/contents/TorusknotView.jsx'
+// import TorusknotView from './ui/contents/TorusknotView.jsx'
 import StudioView from './ui/contents/StudioView.jsx'
+import { useMemo } from 'react'
+import { KeyboardControls } from '@react-three/drei'
 // import BoxView from './ui/contents/BoxView.jsx'
 
 export default function App() {
+  const map = useMemo(() => [
+    { name: "forward", keys: ['ArrowUp', 'KeyW'] },
+    { name: "back", keys: ['ArrowDown', 'KeyS'] },
+    { name: "left", keys: ['ArrowLeft', 'KeyA'] },
+    { name: "right", keys: ['ArrowRight', 'KeyD'] },
+    { name: "jump", keys: ['Space'] },
+  ], []);
+
   return (
     <main>
       <Header />
@@ -15,7 +25,9 @@ export default function App() {
 
       {/* <BoxView /> */}
 
-      <StudioView />
+      <KeyboardControls map={map}>
+        <StudioView />
+      </KeyboardControls>
 
       {/* end content */}
 

@@ -1,8 +1,6 @@
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import Tree from "./Tree";
-import House from "./House";
-import CoffeeShop from "./CoffeeShop";
 
 export default function Background() {
   const groupRef = useRef();

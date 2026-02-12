@@ -6,7 +6,6 @@ import gsap from "gsap";
 import Background from "../../components/Background";
 
 export default function StudioView() {
-    // const [activeCamera, setActiveCamera] = useState(1);
     const cameraRef = useRef();
 
     useEffect(() => {
