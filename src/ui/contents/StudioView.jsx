@@ -1,4 +1,4 @@
-import { ContactShadows, Edges, GradientTexture, Grid, MeshWobbleMaterial, OrbitControls, PerspectiveCamera, PositionalAudio, Shadow, SoftShadows } from "@react-three/drei";
+import { ContactShadows, Edges, GradientTexture, Grid, MeshWobbleMaterial, OrbitControls, PerspectiveCamera, PositionalAudio, ScreenSizer, ScreenSpace, Shadow, SoftShadows } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Character from "../../components/Character";
 import { useEffect, useRef } from "react";
