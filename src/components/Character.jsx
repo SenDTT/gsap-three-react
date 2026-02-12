@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { Suspense, useEffect, useRef } from "react";
 import * as THREE from "three";
 
-export default function Character() {
+export default function Character({position}) {
     const { scene, animations } = useGLTF('/models/humanoid_robot.glb');
     const mixer = useRef(null);
     const actionRef = useRef(null);
@@ -60,7 +60,7 @@ export default function Character() {
 
     return (
         <Suspense fallback={null}>
-            <primitive ref={ref} object={scene} position={[0, -0.45, 1]} scale={0.7} rotation={[0, Math.PI * 2.5, 0]} />
+            <primitive ref={ref} object={scene} position={position} scale={0.7} rotation={[0, Math.PI * 2.5, 0]} />
 
                 <ContactShadows 
                     position={[0, -0.4, 0.05]}

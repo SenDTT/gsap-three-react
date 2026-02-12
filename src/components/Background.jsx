@@ -1,6 +1,8 @@
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import Tree from "./Tree";
+import House from "./House";
+import CoffeeShop from "./CoffeeShop";
 
 export default function Background() {
   const groupRef = useRef();
@@ -18,8 +20,8 @@ export default function Background() {
   return (
     <group ref={groupRef}>
       <Tree position={[0, -2, -0.2]} />
-      {/* <House position={[8, 0, -10]} />
-      <CoffeeShop position={[16, 0, -10]} /> */}
+      <Tree position={[5, -2, -0.2]} />
+      <Tree position={[10, -2, -0.2]} />
       <Tree position={[7, -2, -0.2]} />
     </group>
   );
