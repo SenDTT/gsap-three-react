@@ -7,10 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const SECTIONS = [
-  { label: "Section One",   desc: "Scroll down to explore" },
-  { label: "Section Two",   desc: "The scene changes with you" },
-  { label: "Section Three", desc: "Keep going..." },
-  { label: "Section Four",  desc: "Almost there" },
+  { label: "Section One",   desc: "Scroll down to explore",       img: "https://picsum.photos/seed/s1/400/300" },
+  { label: "Section Two",   desc: "The scene changes with you",   img: "https://picsum.photos/seed/s2/400/300" },
+  { label: "Section Three", desc: "Keep going...",                img: "https://picsum.photos/seed/s3/400/300" },
+  { label: "Section Four",  desc: "Almost there",                 img: "https://picsum.photos/seed/s4/400/300" },
 ];
 
 const BG_COLORS = ["#b3b3f5", "#a8d8b9", "#f5b3b3", "#c4b8f5"];
@@ -85,7 +85,7 @@ export default function WebsiteView() {
 
     const textTriggers = sectionRefs.current.map((section, i) => {
       const fromRight = i % 2 !== 0;
-      const textEls = section.querySelectorAll("h2, p");
+      const textEls = section.querySelectorAll("h2, p, img");
 
       gsap.set(textEls, { x: fromRight ? 100 : -100, opacity: 0 });
 
@@ -93,7 +93,7 @@ export default function WebsiteView() {
         scroller: el,
         trigger: section,
         start: "top 75%",
-        onEnter: () => gsap.to(textEls, { x: 0, opacity: 1, duration: 1, ease: "power2.out", stagger: 0.1 }),
+        onEnter: () => gsap.to(textEls, { x: 0, opacity: 1, duration: 1, ease: "power2.out", stagger: 0.3 }),
         onLeaveBack: () => gsap.to(textEls, { x: fromRight ? 100 : -100, opacity: 0, duration: 1, ease: "power2.in" }),
       });
     });
@@ -108,7 +108,7 @@ export default function WebsiteView() {
     <div ref={scrollRef} style={{ height: "100%", overflowY: "scroll" }} className="website-scroll">
 
       {/* sticky 3D canvas */}
-      <div ref={bgRef} style={{ position: "sticky", top: 0, height: "100%", backgroundColor: BG_COLORS[0], transition: "none", zIndex: 0 }}>
+      <div ref={bgRef} className="website-canvas-bg" style={{ backgroundColor: BG_COLORS[0] }}>
         <Canvas camera={{ position: [0, 0, 5] }} style={{ height: "100%" }}>
           <ambientLight intensity={0.4} />
           <directionalLight position={[5, 5, 5]} intensity={1.5} />
@@ -118,23 +118,19 @@ export default function WebsiteView() {
       </div>
 
       {/* scroll sections — sit on top of the sticky canvas */}
-      <div style={{ position: "relative", zIndex: 1, pointerEvents: "none" }}>
+      <div className="website-sections">
         {SECTIONS.map((s, i) => (
           <div
             key={i}
             className="section"
             ref={(el) => (sectionRefs.current[i] = el)}
-            style={{
-              height: "100vh",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: i % 2 === 0 ? "flex-start" : "flex-end",
-              padding: "0 8vw",
-            }}
+            style={{ flexDirection: i % 2 === 0 ? "row" : "row-reverse" }}
           >
-            <h2 style={{ color: "#4e3131", fontSize: "3rem", margin: 0, textShadow: "0 2px 20px rgba(0,0,0,0.5)" }}>{s.label}</h2>
-            <p style={{ color: "#736c6c", fontSize: "1.2rem", marginTop: "0.5rem", textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}>{s.desc}</p>
+            <div className="section-text" style={{ alignItems: i % 2 === 0 ? "flex-start" : "flex-end" }}>
+              <h2>{s.label}</h2>
+              <p>{s.desc}</p>
+            </div>
+            <img className="section-img" src={s.img} alt={s.label} />
           </div>
         ))}
       </div>
