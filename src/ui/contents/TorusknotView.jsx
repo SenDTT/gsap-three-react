@@ -7,7 +7,7 @@ export default function TorusknotView() {
     const randChar = generate({maxLength: 1});
     return (
         <Canvas
-            style={{ background: '#111', height: '78vh' }}
+            style={{ background: '#111', height: '100%' }}
             camera={{ position: [3, 4, 5] }}
             >
             <ambientLight intensity={0.5} />

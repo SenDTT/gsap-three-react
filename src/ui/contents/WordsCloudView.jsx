@@ -5,7 +5,7 @@ import Cloud from "../../components/Cloud";
 
 export default function WordsCloudView() {
     return (
-        <Canvas style={{ height: '78vh'}} dpr={[1, 2]} camera={{ position: [0, 0, 35], fov: 90 }}>
+        <Canvas style={{ height: '100%'}} dpr={[1, 2]} camera={{ position: [0, 0, 35], fov: 90 }}>
             <fog attach="fog" args={['#202025', 0, 80]} />
 
             <Suspense fallback={null}>

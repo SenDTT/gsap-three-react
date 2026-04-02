@@ -38,7 +38,7 @@ export default function StudioView() {
     }, []);
 
     return (
-        <Canvas style={{height: "78vh"}} shadows>
+        <Canvas style={{height: "100%"}} shadows>
             {/* <SoftShadows opacity={0.5} size={30} samples={20} /> */}
 
             <color attach="background" args={['#252424']} />

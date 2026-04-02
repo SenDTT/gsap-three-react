@@ -30,7 +30,7 @@ const instances = Array.from({ length: 100 }, () => ({
 
 export default function MergeMeshesView() {
   return (
-    <Canvas shadows style={{ height: "78vh" }} camera={{ position: [18, 14, 18], fov: 50 }}>
+    <Canvas shadows style={{ height: "100%" }} camera={{ position: [18, 14, 18], fov: 50 }}>
       <color attach="background" args={["#111"]} />
       <ambientLight intensity={0.3} />
       <directionalLight
