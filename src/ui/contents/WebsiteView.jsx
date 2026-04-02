@@ -84,7 +84,7 @@ export default function WebsiteView() {
   }, []);
 
   return (
-    <div ref={scrollRef} style={{ height: "100%", overflowY: "scroll" }}>
+    <div ref={scrollRef} style={{ height: "100%", overflowY: "scroll" }} className="website-scroll">
 
       {/* sticky 3D canvas */}
       <div ref={bgRef} style={{ position: "sticky", top: 0, height: "100%", backgroundColor: BG_COLORS[0], transition: "none", zIndex: 0 }}>

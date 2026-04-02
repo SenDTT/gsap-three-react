@@ -20,6 +20,14 @@ html, body, #root {
   background: #111;
 }
 
+.website-scroll {
+  scrollbar-width: none;
+}
+
+.website-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
