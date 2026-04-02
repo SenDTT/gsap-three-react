@@ -4,6 +4,7 @@ import Footer from './ui/footer.jsx'
 import StudioView from './ui/contents/StudioView.jsx'
 import { useMemo } from 'react'
 import { KeyboardControls } from '@react-three/drei'
+import MergeMeshesView from './ui/contents/MergedMeshesView.jsx'
 // import WordsCloudView from './ui/contents/WordsCloudView.jsx'
 // import BoxView from './ui/contents/BoxView.jsx'
 
@@ -26,11 +27,13 @@ export default function App() {
 
       {/* <BoxView /> */}
 
-      <KeyboardControls map={map}>
+      {/* <KeyboardControls map={map}>
         <StudioView />
-      </KeyboardControls>
+      </KeyboardControls> */}
 
       {/* <WordsCloudView /> */}
+
+      <MergeMeshesView />
 
       {/* end content */}
 
