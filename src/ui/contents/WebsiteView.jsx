@@ -7,10 +7,26 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const SECTIONS = [
-  { label: "Section One",   desc: "Scroll down to explore",       img: "https://picsum.photos/seed/s1/400/300" },
-  { label: "Section Two",   desc: "The scene changes with you",   img: "https://picsum.photos/seed/s2/400/300" },
-  { label: "Section Three", desc: "Keep going...",                img: "https://picsum.photos/seed/s3/400/300" },
-  { label: "Section Four",  desc: "Almost there",                 img: "https://picsum.photos/seed/s4/400/300" },
+  {
+    label:	"Section One",
+    desc:	"Scroll down to explore",
+    img:	"https://picsum.photos/seed/s1/400/300",
+  },
+  {
+    label:	"Section Two",
+    desc:	"The scene changes with you",
+    img:	"https://picsum.photos/seed/s2/400/300",
+  },
+  {
+    label:	"Section Three",
+    desc:	"Keep going...",
+    img:	"https://picsum.photos/seed/s3/400/300",
+  },
+  {
+    label:	"Section Four",
+    desc:	"Almost there",
+    img:	"https://picsum.photos/seed/s4/400/300",
+  },
 ];
 
 const BG_COLORS = ["#b3b3f5", "#a8d8b9", "#f5b3b3", "#c4b8f5"];
