@@ -66,12 +66,13 @@ function SceneObject({ scrollRef }) {
 export default function WebsiteView() {
   const scrollRef = useRef();
   const bgRef = useRef();
+  const sectionRefs = useRef([]);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
 
-    ScrollTrigger.create({
+    const bgTrigger = ScrollTrigger.create({
       scroller: el,
       start: 0,
       end: "max",
@@ -80,7 +81,25 @@ export default function WebsiteView() {
       },
     });
 
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
+    const textTriggers = sectionRefs.current.map((section, i) => {
+      const fromRight = i % 2 !== 0;
+      const textEls = section.querySelectorAll("h2, p");
+
+      gsap.set(textEls, { x: fromRight ? 100 : -100, opacity: 0 });
+
+      return ScrollTrigger.create({
+        scroller: el,
+        trigger: section,
+        start: "top 75%",
+        onEnter: () => gsap.to(textEls, { x: 0, opacity: 1, duration: 1, ease: "power2.out", stagger: 0.1 }),
+        onLeaveBack: () => gsap.to(textEls, { x: fromRight ? 100 : -100, opacity: 0, duration: 1, ease: "power2.in" }),
+      });
+    });
+
+    return () => {
+      bgTrigger.kill();
+      textTriggers.forEach((t) => t.kill());
+    };
   }, []);
 
   return (
@@ -102,6 +121,7 @@ export default function WebsiteView() {
           <div
             key={i}
             className="section"
+            ref={(el) => (sectionRefs.current[i] = el)}
             style={{
               height: "100vh",
               display: "flex",
