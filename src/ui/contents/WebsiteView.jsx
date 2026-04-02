@@ -19,6 +19,8 @@ const colorInterpolator = gsap.utils.interpolate(BG_COLORS);
 function SceneObject({ scrollRef }) {
   const meshRef = useThreeRef();
 
+  const calDemensions = (i) => 1 + i * 0.4;
+
   useFrame((state) => {
     if (!meshRef.current) return;
     meshRef.current.rotation.x += 0.005;
@@ -38,8 +40,8 @@ function SceneObject({ scrollRef }) {
         trigger: el.querySelectorAll(".section")[i],
         start: "top center",
         end: "bottom center",
-        onEnter: () => gsap.to(mesh.scale, { x: 1 + i * 0.4, y: 1 + i * 0.4, z: 1 + i * 0.4, duration: 0.8, ease: "power2.out" }),
-        onEnterBack: () => gsap.to(mesh.scale, { x: 1 + i * 0.4, y: 1 + i * 0.4, z: 1 + i * 0.4, duration: 0.8, ease: "power2.out" }),
+        onEnter: () => gsap.to(mesh.scale, { x: calDemensions(i), y: calDemensions(i), z: calDemensions(i), duration: 0.8, ease: "power2.out" }),
+        onEnterBack: () => gsap.to(mesh.scale, { x: calDemensions(i), y: calDemensions(i), z: calDemensions(i), duration: 0.8, ease: "power2.out" }),
       });
     });
 
